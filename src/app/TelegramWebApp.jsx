@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useContext } from "react";
-const TelegramWebAppContext = useContext();
-export default function TelegramWebApp({ children }) {
+import React, { createContext, useContext } from "react";
+const TelegramWebAppContext = createContext();
+export function TelegramWebApp({ children }) {
   const [telegramApp, setTelegramApp] = useState(null);
   const [userData, setUserData] = useState(null);
 
@@ -29,4 +29,9 @@ export default function TelegramWebApp({ children }) {
       {children}
     </TelegramWebAppContext.Provider>
   );
+}
+
+export function useUserData() {
+  const data = useContext(TelegramWebAppContext);
+  return { userData: data.userData };
 }
