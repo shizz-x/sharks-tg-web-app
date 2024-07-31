@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 90px;
+    justify-content: space-between;
+    overflow: hidden;
+    z-index: 10;
+    padding: 0 10px;
+    .navbar_bg {
+        position: absolute;
+        left: 0px;
+        bottom: 0;
+        z-index: 0;
+
+        path {
+            width: 100%;
+            fill: #171717f2;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.userbar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 20px;
+    width: 100%;
+    min-width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    .inner {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
