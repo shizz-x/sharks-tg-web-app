@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 const TelegramWebAppContext = createContext();
 export function TelegramWebApp({ children }) {
   const [telegramApp, setTelegramApp] = useState(null);
