@@ -2,7 +2,7 @@ import style from "./Userbar.module.scss";
 import Avatar from "../Avatar/Avatar.jsx";
 import Balance from "../Balance/Balance.jsx";
 import Progress from "../Progress/Progress.jsx";
-import av1 from "../../../public/characters/Character 3.png";
+import av1 from "../../../public/characters/Character 1.png";
 import wallet from "../../../public/icons/Wallet.png";
 
 export default function Userbar({}) {
