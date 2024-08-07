@@ -2,6 +2,10 @@ import style from "./Balance.module.scss";
 import PropTypes from "prop-types";
 
 export default function Balance({ amount }) {
+    // Check if the amount is a number and format it with commas if true
+    const formattedAmount =
+        typeof amount === "number" ? amount.toLocaleString() : amount;
+
     return (
         <div className={style.balance}>
             <svg
@@ -17,11 +21,12 @@ export default function Balance({ amount }) {
                     fill="black"
                 />
             </svg>
-            <span>{amount}</span>
+            <span>{formattedAmount}</span>
         </div>
     );
 }
 
 Balance.propTypes = {
-    amount: PropTypes.number,
+    amount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        .isRequired,
 };

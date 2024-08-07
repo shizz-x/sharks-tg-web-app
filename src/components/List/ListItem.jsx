@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import style from "./List.module.scss";
 import ListItemContainer from "./ListItemContainer.jsx";
 import Avatar from "../Avatar/Avatar.jsx";
+import Balance from "../Balance/Balance.jsx";
 
 export default function ContactItem(props) {
     return (
@@ -9,8 +10,9 @@ export default function ContactItem(props) {
             <Avatar image={props.image} title={props.title} />
             <div className={style.info}>
                 <h3>{props.title}</h3>
-                <p>{props.address}</p>
+                <Balance amount={props.address} />
             </div>
+            <h4>{props.id}</h4>
         </ListItemContainer>
     );
 }

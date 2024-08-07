@@ -1,0 +1,39 @@
+.claimButton {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: #ffffff;
+    border-radius: 99px;
+    justify-content: center;
+    border: none;
+    height: 50px;
+    min-height: 50px;
+    width: 180px;
+    gap: 5px;
+    background: linear-gradient(90deg, #12dd01 0%, #8f00ff 80%);
+}
+
+.place {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: #ffffff;
+    border-radius: 99px;
+    justify-content: center;
+    border: none;
+    height: 50px;
+    min-height: 50px;
+    width: 180px;
+    gap: 5px;
+    background: linear-gradient(90deg, #12dd01 0%, #8f00ff 80%);
+}
+
+.bigbutton {
+    background-color: transparent;
+    background-image: url("../../../public/bigbutton.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    aspect-ratio: 4.42/1;
+    border: 0;
+}
