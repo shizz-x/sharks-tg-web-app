@@ -16,7 +16,6 @@ export default function RootLayout({ skills, children }) {
             </head>
             <TelegramWebApp>
                 <body>
-                    <Overlay>{skills}</Overlay>
                     <Navbar />
                     <Userbar />
                     <Panel>{children}</Panel>

@@ -1,19 +1,16 @@
 "use client";
-import { contactList } from "../../components/List/contactList.jsx";
-import { List } from "../../components/List/List.jsx";
-import Place from "../../components/Buttons/Place.jsx";
-import StickyBar from "../../components/StickyBar/StickyBar.jsx";
-import ScrollArea from "../../components/ScrollArea/ScrollArea.jsx";
-export default function Top() {
+
+import StickyBar from "@/components/StickyBar/StickyBar.jsx";
+import Soon from "@/components/Buttons/Soon.jsx";
+import TaskList from "@/components/TaskList/TaskList.jsx";
+
+export default function Friends() {
     return (
         <section>
             <StickyBar>
-                <Place title="Claim" />
+                <Soon title="Get daily reward" />
             </StickyBar>
-
-            <ScrollArea>
-                <List list={contactList} />
-            </ScrollArea>
+            <TaskList />
         </section>
     );
 }
