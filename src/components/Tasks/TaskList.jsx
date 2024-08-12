@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import style from './TaskList.module.scss'
-import TaskListItem from './TaskIListItem.jsx'
-import BigButton from '@/components/Buttons/BigButton.jsx'
+import TaskListItem from './TaskIListItem'
+import BigButton from '@/components/Buttons/BigButton'
 import Image from '../../../public/airdrop.png'
-import Banner from '@/components/Banner/Banner.jsx'
+import Banner from '@/components/Banner/Banner'
 
 export default function TaskList({ list }) {
   console.log('liiiiii', list)

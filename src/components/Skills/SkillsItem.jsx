@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import style from './SkillsList.module.scss'
 import Image from 'next/image'
-import { Row } from '@/components/Blocks/Blocks.jsx'
-import BigButton from '@/components/Buttons/BigButton.jsx'
-import Balance from '@/components/Balance/Balance.jsx'
-import Line from '@/components/Line/Line.jsx'
+import { Row } from '@/components/Blocks/Blocks'
+import BigButton from '@/components/Buttons/BigButton'
+import Balance from '@/components/Balance/Balance'
+import Line from '@/components/Line/Line'
 
 export default function SkillsItem(props) {
   return (
