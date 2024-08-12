@@ -1,17 +1,17 @@
-"use client";
+'use client'
 
-import styles from "./Buttons.module.scss";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import Icon from "../Icons/Icons.jsx";
-import Balance from "../Balance/Balance.jsx";
+import styles from './Buttons.module.scss'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
 
 BigButton.propTypes = {
-    icon: PropTypes.string,
-    title: PropTypes.string,
-    up: PropTypes.bool,
-};
+  icon: PropTypes.string,
+  title: PropTypes.string,
+  reverse: PropTypes.bool,
+}
 
-export default function BigButton({ title, icon }) {
-    return <button className={classNames(styles.bigbutton)}>{title}</button>;
+export default function BigButton({ title, icon, reverse }) {
+  return (
+    <button className={classNames(styles.bigbutton, reverse && styles.reverse)}>{title}</button>
+  )
 }
