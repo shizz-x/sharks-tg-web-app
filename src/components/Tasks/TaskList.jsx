@@ -15,6 +15,7 @@ export default function TaskList({ list }) {
       />
       {list.map(item => (
         <TaskListItem
+          key={item.id}
           id={item.id}
           title={item.title}
           reward={item.reward}
