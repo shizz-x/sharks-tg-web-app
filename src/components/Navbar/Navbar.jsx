@@ -20,12 +20,14 @@ export default function Navbar({}) {
       <svg
         width='100%'
         height='auto'
-        viewBox='0 0 390 97'
+        viewBox='0 0 500 97'
         className={style.navbar_bg}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
       >
-        <path d='M0 10.6823C55.2609 3.94923 122.487 0 195 0C267.513 0 334.739 3.94923 390 10.6823V97H0V10.6823Z' />
+        <symbol></symbol>
+
+        <path d='M 0.003 22.136 C 70.825 15.545 151.784 0.422 244.715 0.422 C 337.646 0.422 428.816 16.805 499.638 23.396 L 500.126 97.806 L 0.31 97.806 L 0.003 22.136 Z'></path>
       </svg>
     </nav>
   )

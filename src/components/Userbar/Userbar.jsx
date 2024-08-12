@@ -9,7 +9,7 @@ import { useApi } from '@/components/Api/ApiProvider'
 import { useEffect } from 'react'
 
 export default function Userbar({}) {
-  // const api = useApi()
+  const api = useApi()
 
   useEffect(() => {
     if (api.readyState) {
