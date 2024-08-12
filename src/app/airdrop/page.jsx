@@ -1,6 +1,6 @@
 'use client'
 
-import BigButton from '@/components/Buttons/Bigbutton'
+import BigButton from '@/components/Buttons/BigButton'
 import StickyBar from '@/components/StickyBar/StickyBar'
 import Soon from '@/components/Buttons/Soon'
 import Sect from '@/components/Blocks/Sect'

@@ -2162,6 +2162,11 @@ react-merge-refs@2.1.1:
   resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-2.1.1.tgz#e46763f8f1b881c0226ee54a1a2a10ffefba0233"
   integrity sha512-jLQXJ/URln51zskhgppGJ2ub7b2WFKGq3cl3NYKtlHoTG+dN2q7EzWrn3hN3EgPsTMvpR9tpq5ijdp7YwFZkag==
 
+react-slot-counter@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-slot-counter/-/react-slot-counter-3.0.1.tgz#7b2becdbea1f8c83eb754371d1bd65b287ef3648"
+  integrity sha512-+NwzRrZ+zWErP/8nz+0Y/imtOcMDr1A2Gv8CfzXNRW/zXaxNPMpZQdWeJAX/HiSqaeGc+jxKqKscoMN101NYDg==
+
 react@^18:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"

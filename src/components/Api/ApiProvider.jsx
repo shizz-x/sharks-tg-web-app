@@ -52,6 +52,8 @@ export default function ApiProvider({ children, telegramApp }) {
     /* 
       Профиль игрока
 
+      если пользователь не существует, то создает его
+
       returns: 
         Code	Description
         200	  {
@@ -66,7 +68,12 @@ export default function ApiProvider({ children, telegramApp }) {
 
         404	  Object not found
     */
-    return securedClientActions.hero(TelegramAuthToken)
+    const response = await securedClientActions.hero(TelegramAuthToken)
+    if (!response) {
+      await securedClientActions.createUser(TelegramAuthToken, telegramApp.initDataUnsafe.user)
+      return securedClientActions.hero(TelegramAuthToken)
+    }
+    return response
   }
   const request_getSharks_Authorized = async () => {
     /* 

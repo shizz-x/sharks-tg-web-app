@@ -3,22 +3,19 @@ import axios from 'axios'
 class Axios {
   urlsMap = {
     createUser: '/createUser',
-    hero: '/hero',
-    sharks: '/sharks',
-    balance: '/balance',
-    levels: '/levels',
-    inventory: '/inventory',
-    delayList: '/delayList',
-    job: '/job',
+    hero: '/api/hero',
+    sharks: '/api/sharks',
+    balance: '/api/balance',
+    levels: '/api/levels',
+    inventory: '/api/inventory',
+    delayList: '/api/delayList',
+    job: '/api/job',
   }
-
-  baseURL = 'http://3.29.180.112/api/'
 
   xauth = null
 
   constructor(xauth) {
     this.instance = axios.create({
-      baseURL: this.baseURL,
       headers: {
         TelegramAuth: xauth,
         'Content-Type': 'application/json',

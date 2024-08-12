@@ -6,20 +6,20 @@ import PropTypes from 'prop-types'
 import Icon from '../Icons/Icons.jsx'
 import Balance from '../Balance/Balance.jsx'
 
-ClaimButton.propTypes = {
+JobMultiButton.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
   progress: PropTypes.number,
   farm: PropTypes.bool,
 }
 
-export default function ClaimButton({ title, icon, progress }) {
+export default function JobMultiButton({ title, icon, progress, time }) {
   return (
-    <button className={classNames(styles.claimButton)}>
+    <button className={classNames(styles.JobMultiButton)}>
       <div className={styles.info}>
         {progress === 100 ? (
           <div>
-            Claim <Balance amount={15} />
+            {title} <Balance amount={15} />
           </div>
         ) : progress === 0 ? (
           <div>Farm</div>

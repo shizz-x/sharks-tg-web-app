@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import ApiProvider from '@/components/Api/ApiProvider'
+import VariablesProvider from '@/components/Variables/VariablesProvider'
 
 const data = {
   initData:

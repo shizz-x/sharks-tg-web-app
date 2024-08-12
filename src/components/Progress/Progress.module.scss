@@ -1,25 +1,27 @@
 .progress {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    overflow: visible;
-    font-weight: bold;
-    height: 11px;
-    width: 160px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  height: 11px;
+  width: 160px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.244);
+  border: 1px solid rgba(255, 255, 255, 0.219);
+  padding: 2px;
+  position: relative;
+  .bar {
+    transition: width 0.5s ease;
+    z-index: 2;
+    height: 100%;
+    width: 0%;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.244);
-    border: 1px solid rgba(255, 255, 255, 0.219);
-    padding: 2px;
-    div {
-        height: 100%;
-        width: 70%;
-        border-radius: 10px;
-        background: rgb(0, 255, 148);
-        background: linear-gradient(
-            90deg,
-            rgba(0, 255, 148, 1) 0%,
-            rgba(255, 0, 245, 1) 49%,
-            rgba(255, 122, 0, 1) 100%
-        );
-    }
+    background: rgb(0, 255, 148);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 255, 148, 1) 0%,
+      rgba(255, 0, 245, 1) 49%,
+      rgba(255, 122, 0, 1) 100%
+    );
+  }
 }

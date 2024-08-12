@@ -6,6 +6,7 @@ import style from './layout.module.scss'
 import Panel from '../components/Panel/Panel'
 import Overlay from '../components/Panel/Overlay'
 import classNames from 'classnames'
+import VariablesProvider from '@/components/Variables/VariablesProvider'
 import { TelegramWebApp } from '@/components/TelegramWebApp/TelegramWebApp'
 
 export default function RootLayout({ skills, children }) {
@@ -16,16 +17,18 @@ export default function RootLayout({ skills, children }) {
       </head>
       <TelegramWebApp>
         <body>
-          <Overlay>{skills}</Overlay>
-          <Navbar />
-          <Userbar />
-          <Panel>{children}</Panel>
-          <Spline
-            scene='https://prod.spline.design/1IbTsvj9GRHhGa6P/scene.splinecode'
-            width={'100%'}
-            height={'100%'}
-            className={style.character}
-          />
+          <VariablesProvider>
+            <Overlay>{skills}</Overlay>
+            <Navbar />
+            <Userbar />
+            <Panel>{children}</Panel>
+            <Spline
+              scene='https://prod.spline.design/1IbTsvj9GRHhGa6P/scene.splinecode'
+              width={'100%'}
+              height={'100%'}
+              className={style.character}
+            />
+          </VariablesProvider>
         </body>
       </TelegramWebApp>
     </html>

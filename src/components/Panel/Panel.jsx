@@ -11,7 +11,6 @@ export default function Panel({ children }) {
   const isHomePage = pathname === '/' || pathname.includes('/skills')
 
   const isAirdrop = pathname === '/airdrop'
-  console.log(isHomePage)
   return (
     <main className={classNames(style.panel, isHomePage && style.closed)}>
       {children}
