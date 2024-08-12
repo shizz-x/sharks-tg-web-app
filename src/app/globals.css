@@ -109,10 +109,6 @@ body {
   max-height: 100dvh;
   overflow: hidden;
   font-family: var(--font-family);
-  * {
-    font-family: var(--font-family);
-    letter-spacing: 0.3px;
-  }
 }
 
 main > section {
