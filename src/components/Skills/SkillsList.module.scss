@@ -51,7 +51,7 @@ $btn-border-radius: 15px;
     align-items: center;
     justify-content: space-between;
     gap: $content-gap;
-    padding: 5px 0px;
+    padding: 5px 0px 15px 0px;
     border: 1px solid #2e2e2e;
     border-radius: $btn-border-radius;
     transition: 0.2s;
@@ -60,7 +60,7 @@ $btn-border-radius: 15px;
     max-height: fit-content;
     position: relative;
     min-height: 120px;
-    max-height: 140px;
+    max-height: fit-content;
 
     &.selected {
       background-color: select();

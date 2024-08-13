@@ -1,9 +1,10 @@
 'use client'
-import { SkillsData } from '@/components/Skills/SkillsData.jsx'
-import JobMultiButton from '@/components/Buttons/JobMultiButton.jsx'
-import SkillsList from '@/components/Skills/SkillsList'
-import { useGame } from '@/components/Game/GameProvider.jsx'
-import { useEffect, useState } from 'react'
+
+import { SkillsData } from '../components/Skills/SkillsData.jsx'
+import ClaimButton from '../components/Buttons/ClaimButton.jsx'
+import SkillsList from '../components/Skills/SkillsList'
+import Link from 'next/link'
+
 export default function Sharks() {
   const { gameHandlers, delayList, sharks, jobs } = useGame()
 
@@ -24,12 +25,12 @@ export default function Sharks() {
 
   return (
     <section>
-      <JobMultiButton
-        job={currentJob}
-        defaultValues={{ title: 'Farm', progress: 0, cost: sharks[0]?.cost }}
-        onClick={startShark0Job}
-      />
-      <SkillsList list={SkillsData} />
+
+      <Link href={`/sharks/1`}>Drop Hunter</Link>
+      <Link href={`/sharks/2`}>Influencer</Link>
+      <Link href={`/sharks/3`}>Trader</Link>
+      <Link href={`/sharks/4`}>Whale</Link>
+
     </section>
   )
 }

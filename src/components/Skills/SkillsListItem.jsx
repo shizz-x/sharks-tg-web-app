@@ -3,10 +3,10 @@ import style from './SkillsList.module.scss'
 import Image from 'next/image'
 import SkillsListItemContainer from './SkillsListItemContainer.jsx'
 
-export default function ContactItem(props) {
+export default function SkillsListItem(props) {
   return (
     <SkillsListItemContainer id={props.id}>
-      <p>{props.address}</p>
+      <p>{props.level}</p>
       <Image src={props.image} alt={props.title} width={100} height={100} />
       <div className={style.info}>
         <h3>{props.title}</h3>
@@ -15,7 +15,7 @@ export default function ContactItem(props) {
   )
 }
 
-ContactItem.propTypes = {
+SkillsListItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,

@@ -8,7 +8,8 @@ import classNames from 'classnames'
 console.log
 export default function Panel({ children }) {
   const pathname = usePathname()
-  const isHomePage = pathname === '/' || pathname.includes('/skills')
+  const isHomePage =
+    pathname === '/' || pathname.includes('/skills') || pathname.includes('/sharks')
 
   const isAirdrop = pathname === '/airdrop'
   return (

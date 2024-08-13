@@ -56,7 +56,7 @@
   bottom: 0;
   &.closed {
     max-height: fit-content;
-    height: 330px;
+    height: fit-content;
     transition: all 0.4s;
     transition-timing-function: ease-out;
   }
