@@ -253,7 +253,7 @@ export default function ApiProvider({ children, telegramApp }) {
 
   useEffect(() => {
     if (TelegramAuthToken) {
-      setReadyState(true)
+      setReadyState(false)
     }
   }, [TelegramAuthToken])
 

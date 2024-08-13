@@ -31,9 +31,6 @@ export default function Userbar({}) {
     }
   }, [game, api])
 
-  if (game.balance.CODE !== 200) {
-    return <>Api not ready</>
-  }
   return (
     <menu className={style.userbar}>
       <Avatar image={av1.src} />
