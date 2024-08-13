@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+/**
+ * Axios класс для обращения к серверу
+ *
+ * @class Axios
+ */
 class Axios {
   urlsMap = {
     createUser: '/createUser',
@@ -36,4 +41,5 @@ class Axios {
     })
   }
 }
+
 export default Axios

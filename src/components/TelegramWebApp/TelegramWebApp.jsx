@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import ApiProvider from '@/components/Api/ApiProvider'
-import VariablesProvider from '@/components/Variables/VariablesProvider'
 
 const data = {
   initData:
@@ -31,8 +30,8 @@ export function TelegramWebApp({ children }) {
 
   useEffect(() => {
     if (window.Telegram) {
-      // setTelegramApp(window.Telegram.WebApp);
-      setTelegramApp(data)
+      setTelegramApp(window.Telegram.WebApp)
+      // setTelegramApp(data)
       // hero(data.xauth).then(console.log);
     }
   }, [])

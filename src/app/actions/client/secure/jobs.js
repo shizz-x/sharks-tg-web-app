@@ -5,7 +5,10 @@ export default async function jobs(xauth) {
 
   const response = await axios
     .get(axios.urlsMap.job)
-    .then(r => r.data)
-    .catch(e => console.log(e))
+    .then(r => Object.assign(r.data, { CODE: r.status }))
+    .catch(e => {
+      console.error(e)
+      return Object.assign(e.response.data, { CODE: e.response.status })
+    })
   return response
 }

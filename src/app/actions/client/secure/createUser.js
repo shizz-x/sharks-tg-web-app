@@ -15,7 +15,10 @@ export default async function createUser(
       allows_write_to_pm,
       id,
     })
-    .then(r => r.data)
-    .catch(e => console.log(e))
+    .then(r => Object.assign(r.data, { CODE: r.status }))
+    .catch(e => {
+      console.error(e)
+      return Object.assign(e.response.data, { CODE: e.response.status })
+    })
   return response
 }

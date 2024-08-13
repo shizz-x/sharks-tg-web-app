@@ -5,7 +5,10 @@ export default async function balance(xauth) {
 
   const response = await axios
     .get(axios.urlsMap.balance)
-    .then(r => r.data)
-    .catch(e => console.log(e))
+    .then(r => Object.assign(r.data, { CODE: r.status }))
+    .catch(e => {
+      console.error(e)
+      return Object.assign(e.response.data, { CODE: e.response.status })
+    })
   return response
 }

@@ -1,34 +1,37 @@
 'use client'
 import style from './Userbar.module.scss'
 import Avatar from '../Avatar/Avatar.jsx'
-import Balance from '../Balance/Balance.jsx'
 import Progress from '../Progress/Progress.jsx'
 import av1 from '../../../public/characters/Character 1.png'
 import wallet from '../../../public/icons/Wallet.png'
 import { useState, useEffect } from 'react'
-import { useVariables } from '@/components/Variables/VariablesProvider'
+import { useGame } from '@/components/Game/GameProvider'
 import localstorage from '@/app/utils/localstorage'
+import BalanceAnimated from '../Balance/BalanceAnimated.jsx'
 export default function Userbar({}) {
-  const vars = useVariables()
+  const game = useGame()
   const [percent, setPercent] = useState(Number(localstorage.getItem('percent')?.num) || 0)
 
   useEffect(() => {
-    if (vars.balance && vars.levels.length > 0) {
-      const filteredLevels = vars.levels.filter(level => level.balance > vars.balance.Balance)
+    if (game.balance && game.levels.length > 0) {
+      const currentLevel = game.levels.find(level => level.balance <= game.balance.Balance)
+      console.log('currentLevel', currentLevel)
+      const filteredLevels = game.levels.filter(level => level.balance >= game.balance.Balance)
+      console.log('filteredLevels', filteredLevels)
+
       if (filteredLevels.length > 0) {
-        const calculatedPercent = (vars.balance.Balance / filteredLevels[0].balance) * 100
+        const calculatedPercent = (game.balance.Balance / filteredLevels[0].balance) * 100
         localstorage.setItem('percent', { num: calculatedPercent })
         setPercent(calculatedPercent)
       }
     }
-  }, [vars])
+  }, [game])
 
   return (
-    <menu onClick={() => setPercent(percent + 1)} className={style.userbar}>
+    <menu className={style.userbar}>
       <Avatar image={av1.src} />
       <div className={style.inner}>
-        <Balance amount={vars.balance.Balance} />
-
+        <BalanceAnimated amount={game.balance.Balance} />
         <Progress percent={percent} />
       </div>
 

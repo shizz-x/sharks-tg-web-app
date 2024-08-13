@@ -9,15 +9,14 @@
 
   .hidden_balance_incrementor {
     position: absolute;
+    font-weight: 100;
+    letter-spacing: 1.3px;
+    font-size: 1em;
     top: 0;
     right: 0;
     transition: opacity 0.3s;
     color: var(--color-text-secondary);
     transition: all 0.3s;
     transform: translateY(0);
-  }
-  &.shown {
-    opacity: 1;
-    transform: translateY(-100%);
   }
 }

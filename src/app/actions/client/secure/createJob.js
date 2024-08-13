@@ -5,7 +5,10 @@ export default async function createJob(xauth, { shark }) {
 
   const response = await axios
     .post(axios.urlsMap.job, { shark })
-    .then(r => r.data)
-    .catch(e => console.log(e))
+    .then(r => Object.assign(r.data, { CODE: r.status }))
+    .catch(e => {
+      console.error(e)
+      return Object.assign(e.response.data, { CODE: e.response.status })
+    })
   return response
 }

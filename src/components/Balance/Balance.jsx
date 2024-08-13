@@ -1,34 +1,8 @@
-import { useEffect, useState, useRef } from 'react'
 import style from './Balance.module.scss'
 import PropTypes from 'prop-types'
-import SlotCounter from 'react-slot-counter'
 const delay = 750
 
 export default function Balance({ amount }) {
-  const [currentBalance, setCurrentBalance] = useState(amount)
-  const hiddenBalanceRef = useRef(null)
-
-  useEffect(() => {
-    if (hiddenBalanceRef.current === null) return
-    const differenceAmount = amount - currentBalance
-    if (differenceAmount === 0) return
-    console.log(amount, currentBalance, differenceAmount)
-    console.log('before', hiddenBalanceRef.current)
-
-    hiddenBalanceRef.current.innerHTML =
-      (differenceAmount > 0 ? '+' : '') + differenceAmount.toString()
-    console.log(hiddenBalanceRef.current.style)
-    hiddenBalanceRef.current.style = 'opacity: 1; transform: translateY(-100%) '
-
-    console.log('after', hiddenBalanceRef.current)
-
-    setTimeout(() => {
-      hiddenBalanceRef.current.style = 'opacity: 0; transform: translateY(0) '
-
-      setCurrentBalance(amount)
-    }, delay)
-  }, [amount, hiddenBalanceRef])
-
   return (
     <div className={style.balance}>
       <svg
@@ -44,8 +18,7 @@ export default function Balance({ amount }) {
           fill='black'
         />
       </svg>
-      <SlotCounter value={currentBalance}></SlotCounter>
-      <span ref={hiddenBalanceRef} className={style.hidden_balance_incrementor}></span>
+      <span>{amount}</span>
     </div>
   )
 }

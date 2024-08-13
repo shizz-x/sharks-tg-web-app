@@ -5,8 +5,7 @@ import Userbar from '../components/Userbar/Userbar'
 import style from './layout.module.scss'
 import Panel from '../components/Panel/Panel'
 import Overlay from '../components/Panel/Overlay'
-import classNames from 'classnames'
-import VariablesProvider from '@/components/Variables/VariablesProvider'
+import GameProvider from '@/components/Game/GameProvider'
 import { TelegramWebApp } from '@/components/TelegramWebApp/TelegramWebApp'
 
 export default function RootLayout({ skills, children }) {
@@ -15,9 +14,10 @@ export default function RootLayout({ skills, children }) {
       <head>
         <script src='https://telegram.org/js/telegram-web-app.js'></script>
       </head>
-      <TelegramWebApp>
-        <body>
-          <VariablesProvider>
+
+      <body>
+        <TelegramWebApp>
+          <GameProvider>
             <Overlay>{skills}</Overlay>
             <Navbar />
             <Userbar />
@@ -28,9 +28,9 @@ export default function RootLayout({ skills, children }) {
               height={'100%'}
               className={style.character}
             />
-          </VariablesProvider>
-        </body>
-      </TelegramWebApp>
+          </GameProvider>
+        </TelegramWebApp>
+      </body>
     </html>
   )
 }
