@@ -32,7 +32,6 @@ export function TelegramWebApp({ children }) {
     if (window.Telegram) {
       setTelegramApp(window.Telegram.WebApp)
       // setTelegramApp(data)
-      // hero(data.xauth).then(console.log);
     }
   }, [])
 

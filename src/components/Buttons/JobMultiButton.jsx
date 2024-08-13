@@ -72,10 +72,14 @@ export default function JobMultiButton({ job, icon, onClick, defaultValues }) {
           <b>{defaultValues.title}</b> <Balance amount={defaultValues.cost} />
         </div>
       )
+    let now = new Date(pendingJob.CreatedAt)
+
+    // Добавляем 3 минуты
+    now.setMinutes(now.getMinutes() + 3)
 
     return (
       <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', alignItems: 'center' }}>
-        <b>{'Claiming..'}</b> <Balance amount={defaultValues.cost} />
+        <b>{'Claiming.. at ' + now.toLocaleTimeString()}</b>
       </div>
     )
   }
