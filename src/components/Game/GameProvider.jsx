@@ -25,59 +25,69 @@ export default function GameProvider({ children }) {
 
   const updateHandlers = {
     updateBalance: async () => {
-      const _balance = await api.request_getBalance_Authorized()
-      console.log('updateBalance', _balance)
-      if (_balance) {
-        setBalance(_balance)
-        localstorage.setItem('balance', _balance)
+      const response = await api.request_getBalance_Authorized()
+      console.log('updateBalance', response)
+
+      setBalance(response)
+
+      if (response.CODE === 200) {
+        localstorage.setItem('balance', response)
       }
     },
     updateLevels: async () => {
-      const _levels = await api.request_getLevels_Authorized()
-      console.log('updateLevels', _levels)
-      if (_levels) {
-        setLevels(_levels)
-        localstorage.setItem('levels', _levels)
+      const response = await api.request_getLevels_Authorized()
+      console.log('updateLevels', response)
+
+      setLevels(response)
+
+      if (response.CODE === 200) {
+        setLevels(response)
+        localstorage.setItem('levels', response)
       }
     },
     updateInventory: async () => {
-      const _inventory = await api.request_getInventory_Authorized()
-      console.log('updateInventory', _inventory)
-      if (_inventory) {
-        setInventory(_inventory)
-        localstorage.setItem('inventory', _inventory)
+      const response = await api.request_getInventory_Authorized()
+      console.log('updateInventory', response)
+      setInventory(response)
+
+      if (response.CODE === 200) {
+        localstorage.setItem('inventory', response)
       }
     },
     updateProfile: async () => {
-      const _profile = await api.request_getHero_Authorized()
-      console.log('updateProfile', _profile)
-      if (_profile) {
-        setProfile(_profile)
-        localstorage.setItem('profile', _profile)
+      const response = await api.request_getHero_Authorized()
+      console.log('updateProfile', response)
+      setProfile(response)
+
+      if (response.CODE === 200) {
+        localstorage.setItem('profile', response)
       }
     },
     updateSharks: async () => {
-      const _sharks = await api.request_getSharks_Authorized()
-      console.log('updateSharks', _sharks)
-      if (_sharks) {
-        setSharks(_sharks)
-        localstorage.setItem('sharks', _sharks)
+      const response = await api.request_getSharks_Authorized()
+      console.log('updateSharks', response)
+      setSharks(response)
+
+      if (response.CODE === 200) {
+        localstorage.setItem('sharks', response)
       }
     },
     updateDelayList: async () => {
-      const _delayList = await api.request_getDelayList_Authorized()
-      console.log('updateDelayList', _delayList)
-      if (_delayList) {
-        setDelayList(_delayList)
-        localstorage.setItem('delayList', _delayList)
+      const response = await api.request_getDelayList_Authorized()
+      console.log('updateDelayList', response)
+      setDelayList(response)
+
+      if (response.CODE === 200) {
+        localstorage.setItem('delayList', response)
       }
     },
     updateJobs: async () => {
-      const _jobs = await api.request_getJobs_Authorized()
-      console.log('updateJobs', _jobs)
-      if (_jobs) {
-        setJobs(_jobs)
-        localstorage.setItem('jobs', _jobs)
+      const response = await api.request_getJobs_Authorized()
+      console.log('updateJobs', response)
+      setJobs(response)
+
+      if (response.CODE === 200) {
+        localstorage.setItem('jobs', response)
       }
     },
     sync: async () => {

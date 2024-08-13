@@ -8,30 +8,37 @@ import { useState, useEffect } from 'react'
 import { useGame } from '@/components/Game/GameProvider'
 import localstorage from '@/app/utils/localstorage'
 import BalanceAnimated from '../Balance/BalanceAnimated.jsx'
+import { useApi } from '../Api/ApiProvider'
 export default function Userbar({}) {
   const game = useGame()
+  const api = useApi()
   const [percent, setPercent] = useState(Number(localstorage.getItem('percent')?.num) || 0)
 
   useEffect(() => {
-    if (game.balance && game.levels.length > 0) {
-      const currentLevel = game.levels.find(level => level.balance <= game.balance.Balance)
-      console.log('currentLevel', currentLevel)
-      const filteredLevels = game.levels.filter(level => level.balance >= game.balance.Balance)
-      console.log('filteredLevels', filteredLevels)
+    if (api.readyState) {
+      if (game.balance && game.levels.length > 0) {
+        const currentLevel = game.levels.find(level => level.balance <= game.balance.Balance)
+        console.log('currentLevel', currentLevel)
+        const filteredLevels = game.levels.filter(level => level.balance >= game.balance.Balance)
+        console.log('filteredLevels', filteredLevels)
 
-      if (filteredLevels.length > 0) {
-        const calculatedPercent = (game.balance.Balance / filteredLevels[0].balance) * 100
-        localstorage.setItem('percent', { num: calculatedPercent })
-        setPercent(calculatedPercent)
+        if (filteredLevels.length > 0) {
+          const calculatedPercent = (game.balance.Balance / filteredLevels[0].balance) * 100
+          localstorage.setItem('percent', { num: calculatedPercent })
+          setPercent(calculatedPercent)
+        }
       }
     }
-  }, [game])
+  }, [game, api])
 
+  if (game.balance.CODE !== 200) {
+    return <>Api not ready</>
+  }
   return (
     <menu className={style.userbar}>
       <Avatar image={av1.src} />
       <div className={style.inner}>
-        <BalanceAnimated amount={game.balance.Balance} />
+        {api.readyState ? <BalanceAnimated amount={game.balance.Balance} /> : <>Api not ready</>}
         <Progress percent={percent} />
       </div>
 

@@ -21,6 +21,7 @@ class Axios {
 
   constructor(xauth) {
     this.instance = axios.create({
+      timeout: 2000,
       headers: {
         TelegramAuth: xauth,
         'Content-Type': 'application/json',

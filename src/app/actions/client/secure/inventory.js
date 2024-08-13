@@ -7,7 +7,10 @@ export default async function inventory(xauth) {
     .get(axios.urlsMap.inventory)
     .then(r => Object.assign(r.data, { CODE: r.status }))
     .catch(e => {
-      console.error(e)
+      if (e?.code === 'ECONNABORTED') {
+        return Object.assign({ message: 'Iternal error' }, { CODE: 500 })
+      }
+
       return Object.assign(e.response.data, { CODE: e.response.status })
     })
   return response
