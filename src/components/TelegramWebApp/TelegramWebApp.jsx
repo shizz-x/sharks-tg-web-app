@@ -30,15 +30,19 @@ export function TelegramWebApp({ children }) {
 
   useEffect(() => {
     if (window.Telegram) {
-      // setTelegramApp(window.Telegram.WebApp)
-      setTelegramApp(data)
+      console.log('window.Telegram', window.Telegram.WebApp.themeParams)
+      setTelegramApp(window.Telegram.WebApp)
+      // setTelegramApp(data)
     }
   }, [])
 
   const closeTelegramWebAppHandler = () => {
     return telegramApp.close()
   }
-  return (
+
+  return !telegramApp ? (
+    <></>
+  ) : (
     <TelegramWebAppContext.Provider
       value={{ telegramApp, handlers: { closeTelegramWebAppHandler } }}
     >
@@ -56,7 +60,7 @@ export function TelegramWebApp({ children }) {
 
 export function useTelegramWebApp() {
   const data = useContext(TelegramWebAppContext)
-  return { telegramApp: data.telegramApp }
+  return data.telegramApp
 }
 
 export function useTelegramWebAppHandlers() {
