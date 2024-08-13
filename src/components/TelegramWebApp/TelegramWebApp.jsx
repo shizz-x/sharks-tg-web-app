@@ -30,9 +30,8 @@ export function TelegramWebApp({ children }) {
 
   useEffect(() => {
     if (window.Telegram) {
-      // setTelegramApp(window.Telegram.WebApp);
-      setTelegramApp(data)
-      // hero(data.xauth).then(console.log);
+      setTelegramApp(window.Telegram.WebApp)
+      // setTelegramApp(data)
     }
   }, [])
 

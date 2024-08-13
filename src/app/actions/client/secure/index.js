@@ -7,8 +7,7 @@ import inventory from '@/app/actions/client/secure/inventory'
 import delayList from '@/app/actions/client/secure/delayList'
 import jobs from '@/app/actions/client/secure/jobs'
 import createJob from '@/app/actions/client/secure/createJob'
-
-export default {
+const actions = {
   createUser,
   hero,
   balance,
@@ -19,3 +18,4 @@ export default {
   jobs,
   createJob,
 }
+export default actions

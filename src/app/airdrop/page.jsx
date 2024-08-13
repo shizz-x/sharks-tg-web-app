@@ -1,9 +1,9 @@
 'use client'
 
-import BigButton from '@/components/Buttons/BigButton.jsx'
-import StickyBar from '@/components/StickyBar/StickyBar.jsx'
-import Soon from '@/components/Buttons/Soon.jsx'
-import Sect from '@/components/Blocks/Sect.jsx'
+import BigButton from '@/components/Buttons/BigButton'
+import StickyBar from '@/components/StickyBar/StickyBar'
+import Soon from '@/components/Buttons/Soon'
+import Sect from '@/components/Blocks/Sect'
 
 export default function Airdrop() {
   return (

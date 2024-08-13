@@ -1,11 +1,14 @@
-"use client";
-import Axios from "@/app/actions/axios";
+'use client'
+import Axios from '@/app/actions/axios'
 export default async function createUser(xauth) {
-  const axios = new Axios(xauth);
+  const axios = new Axios(xauth)
 
   const response = await axios
     .get(axios.urlsMap.hero)
-    .then((r) => r.data)
-    .catch((e) => console.log(e));
-  return response;
+    .then(r => Object.assign(r.data, { CODE: r.status }))
+    .catch(e => {
+      console.error(e)
+      return Object.assign(e.response.data, { CODE: e.response.status })
+    })
+  return response
 }

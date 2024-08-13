@@ -19,7 +19,9 @@ export default function Background() {
         </defs>
       </svg>
       <div className={classNames(style.background, isAirdrop && style.airdrop)}>
+
         <Image src={airdrop} alt='removelater' />
+
       </div>
     </div>
   )

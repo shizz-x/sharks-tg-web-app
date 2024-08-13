@@ -10,7 +10,6 @@ export default function Overlay({ children }) {
   const pathname = usePathname()
   const isSkill = pathname.startsWith('/skills')
 
-  console.log(isSkill, 'dsafdsdf')
   return (
     <dialog className={classNames(style.panel, style.overlay, isSkill && style.open)}>
       {children}
