@@ -17,7 +17,7 @@ export default function BalanceAnimated({ amount }) {
     console.log('before', hiddenBalanceRef.current)
 
     hiddenBalanceRef.current.innerHTML =
-      (differenceAmount > 0 ? '+' : '') + differenceAmount.toString()
+      (differenceAmount > 0 ? '+' : '') + differenceAmount?.toString()
     console.log(hiddenBalanceRef.current.style)
     hiddenBalanceRef.current.style = 'opacity: 1; transform: translateY(-100%);'
 

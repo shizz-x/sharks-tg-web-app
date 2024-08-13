@@ -31,8 +31,8 @@ export default function Userbar({}) {
     <menu className={style.userbar}>
       <Avatar image={av1.src} />
       <div className={style.inner}>
-        <BalanceAnimated amount={game.balance.Balance} />
-        <Progress percent={percent} />
+        <BalanceAnimated amount={0} />
+        <Progress percent={0} />
       </div>
 
       <Avatar image={wallet.src} />
