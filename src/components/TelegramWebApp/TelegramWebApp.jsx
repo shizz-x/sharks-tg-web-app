@@ -30,8 +30,8 @@ export function TelegramWebApp({ children }) {
 
   useEffect(() => {
     if (window.Telegram) {
-      // setTelegramApp(window.Telegram.WebApp)
-      setTelegramApp(data)
+      setTelegramApp(window.Telegram.WebApp)
+      // setTelegramApp(data)
     }
   }, [])
 
@@ -48,6 +48,16 @@ export function TelegramWebApp({ children }) {
           ...telegramApp,
         }}
       >
+        <div
+          style={{
+            height: '3030px',
+            wordWrap: 'break-word',
+            overflowInline: 'break-word',
+          }}
+        >
+          {JSON.stringify(telegramApp?.initData)}
+        </div>
+
         {children}
       </ApiProvider>
     </TelegramWebAppContext.Provider>
