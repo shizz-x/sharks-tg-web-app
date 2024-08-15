@@ -7,21 +7,21 @@ import axios from 'axios'
  */
 class Axios {
   urlsMap = {
-    createUser: '/createUser',
+    createUser: '/api/createUser',
     hero: '/api/hero',
     sharks: '/api/sharks',
     balance: '/api/balance',
     levels: '/api/levels',
     inventory: '/api/inventory',
     delayList: '/api/delayList',
-    job: '/api/job',
+    claim: '/api/claim',
   }
 
   xauth = null
 
   constructor(xauth) {
     this.instance = axios.create({
-      timeout: 2000,
+      timeout: 15000,
       headers: {
         TelegramAuth: xauth,
         'Content-Type': 'application/json',

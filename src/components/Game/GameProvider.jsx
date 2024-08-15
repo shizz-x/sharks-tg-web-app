@@ -21,6 +21,7 @@ export default function GameProvider({ children }) {
   const [sharks, setSharks] = useState([])
   const [delayList, setDelayList] = useState([])
   const [jobs, setJobs] = useState([])
+  const [claims, setClaims] = useState([])
 
   const updateHandlers = {
     updateBalance: async (newBalance = null, timeout = 3000) => {
@@ -111,6 +112,15 @@ export default function GameProvider({ children }) {
         localstorage.setItem('jobs', response)
       }
     },
+    updateClaims: async () => {
+      const response = await api.request_getClaims_Authorized()
+      console.log('updateClaims', response)
+      setClaims(response)
+
+      if (response.CODE === 200) {
+        localstorage.setItem('claims', response)
+      }
+    },
     sync: async () => {
       await updateHandlers.updateProfile()
     },
@@ -123,19 +133,25 @@ export default function GameProvider({ children }) {
   }, [api.readyState])
 
   const gameHandlers = {
-    startSharkJob: async (delayInMinutes, Shark) => {
-      const _job = await api.request_createJob_Authorized(Shark)
-
+    createClaim: async sharkName => {
+      const _job = await api.request_createClaim_Authorized(sharkName)
       if (_job.CODE === 200) {
         setTimeout(() => {
           updateHandlers.updateBalance()
-          setJobs(jobs.filter(job => job.id !== _job.id))
         }, delayInMinutes * 60 * 1000 + 300)
       }
       if (_job) {
         setJobs([...jobs, _job])
         localstorage.setItem('jobs', jobs)
       }
+    },
+    addBalance: amount => {
+      const newBalance = balance.Balance + amount
+      localstorage.setItem('balance', { ...balance, Balance: newBalance })
+      setBalance(prev => ({ ...prev, Balance: newBalance }))
+      setTimeout(() => {
+        updateHandlers.updateBalance()
+      }, 5000)
     },
   }
 

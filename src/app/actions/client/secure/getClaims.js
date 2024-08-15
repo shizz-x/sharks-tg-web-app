@@ -1,20 +1,10 @@
 'use client'
 import Axios from '@/app/actions/axios'
-export default async function createUser(
-  xauth,
-  { first_name, last_name, user_name, language_code, allows_write_to_pm, id },
-) {
+export default async function getClaims(xauth) {
   const axios = new Axios(xauth)
 
   const response = await axios
-    .post(axios.urlsMap.createUser, {
-      first_name,
-      last_name,
-      user_name,
-      language_code,
-      allows_write_to_pm,
-      id,
-    })
+    .get(axios.urlsMap.claim)
     .then(r => Object.assign(r.data, { CODE: r.status }))
     .catch(e => {
       if (e?.code === 'ECONNABORTED') {

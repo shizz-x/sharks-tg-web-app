@@ -18,10 +18,10 @@ export default function Sharks() {
 
   return (
     <section>
-      <Link href={`/sharks/DropHunter`}>Drop Hunter</Link>
-      <Link href={`/sharks/Influencer`}>Influencer</Link>
-      <Link href={`/sharks/Trader`}>Trader</Link>
-      <Link href={`/sharks/Whale`}>Whale</Link>
+      <Link href={`/sharks/inlfluencer`}>Drop Hunter</Link>
+      <Link href={`/sharks/drop_hunter`}>Influencer</Link>
+      <Link href={`/sharks/trader`}>Trader</Link>
+      <Link href={`/sharks/whale_shark`}>Whale</Link>
     </section>
   )
 }

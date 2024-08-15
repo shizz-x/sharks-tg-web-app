@@ -6,10 +6,12 @@ export default function SkillsList({ list, type }) {
   // Convert the type prop to a number
   const numericType = Number(type)
 
+  console.log('SkillsList', list)
+
   return (
     <div className={style.list}>
       {list
-        .filter(item => item.type === numericType) // Use the converted numericType
+        .filter(item => item.type === 1) // Use the converted numericType
         .map(item => (
           <SkillsListItem
             key={item.id}

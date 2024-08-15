@@ -6,7 +6,8 @@ import levels from '@/app/actions/client/secure/levels'
 import inventory from '@/app/actions/client/secure/inventory'
 import delayList from '@/app/actions/client/secure/delayList'
 import jobs from '@/app/actions/client/secure/jobs'
-import createJob from '@/app/actions/client/secure/createJob'
+import getClaims from '@/app/actions/client/secure/getClaims'
+import createClaim from '@/app/actions/client/secure/createClaim'
 const actions = {
   createUser,
   hero,
@@ -16,6 +17,7 @@ const actions = {
   inventory,
   delayList,
   jobs,
-  createJob,
+  createClaim,
+  getClaims,
 }
 export default actions

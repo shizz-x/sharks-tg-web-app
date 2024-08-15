@@ -8,11 +8,7 @@ export default function Shark(props) {
   const api = useApi()
   return (
     <>
-      {api.readyState ? (
-        <JobMultiButton defaultValues={{ title: 'fart', progress: 100 }} />
-      ) : (
-        <>Api not ready</>
-      )}
+      {api.readyState ? <JobMultiButton.Skeleton /> : <JobMultiButton.Skeleton />}
       <SkillsList list={SkillsData} type={props.type} />
     </>
   )

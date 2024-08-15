@@ -14,6 +14,14 @@ JobMultiButton.propTypes = {
   farm: PropTypes.bool,
   onClick: PropTypes.func,
 }
+JobMultiButton.Skeleton = function Skeleton({}) {
+  return (
+    <button className={classNames(styles.JobMultiButton)}>
+      <div className={styles.info}>Wait...</div>
+      <progress className={styles.progress} value={100} max={100}></progress>
+    </button>
+  )
+}
 
 export default function JobMultiButton({ job, icon, onClick, defaultValues }) {
   const [pendingJob, setPendingJob] = useState(null)

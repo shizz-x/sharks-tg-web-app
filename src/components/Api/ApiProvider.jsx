@@ -182,16 +182,12 @@ const request_getDelayList_Authorized = async () => {}
 const request_getJobs_Authorized = async () => {}
 
 /**
- * Создает новую акулью возню.
+ * Создает новую акулью возню или забирает грошики.
  *
  *     returns:
  *       Code	Description
  *       200	{
- *               "TelegramId": 0,
- *               "Shark": "string",
- *               "Delay": 0,
- *               "CreatedAt": "string",
- *               "UpdatedAt": "string"
+ *              "balance": 0
  *             }
  *
  *       404	Object not found
@@ -199,12 +195,43 @@ const request_getJobs_Authorized = async () => {}
  *              "error": "Job exist"
  *             }
  *
+ *       422	Ошибка зачисления баланса
+ *
+ *       423	Ошибка создания новой работы
+ *
+ *
  * @async
- * @function request_createJob_Authorized
+ * @function request_createClaim_Authorized
  * @param {string} sharkName
  * @returns {Promise<void>}
  */
-const request_createJob_Authorized = async sharkName => {}
+const request_createClaim_Authorized = async sharkName => {}
+
+/**
+ * Создает новую акулью возню или забирает грошики.
+ *
+ *     returns:
+ *       Code	Description
+ *       200	{
+ *              "balance": 0
+ *             }
+ *
+ *       404	Object not found
+ *       411	{
+ *              "error": "Job exist"
+ *             }
+ *
+ *       422	Ошибка зачисления баланса
+ *
+ *       423	Ошибка создания новой работы
+ *
+ *
+ * @async
+ * @function request_getClaims_Authorized
+ * @param {string} sharkName
+ * @returns {Promise<Array<Object>}
+ */
+const request_getClaims_Authorized = async () => {}
 
 /**
  * состояние готовности к отправке запросов. Необходимо для проверки авторизации
@@ -222,7 +249,8 @@ const readyState = false
  * @property {Function} request_getInventory_Authorized
  * @property {Function} request_getDelayList_Authorized
  * @property {Function} request_getJobs_Authorized
- * @property {Function} request_createJob_Authorized
+ * @property {Function} request_getClaims_Authorized
+ * @property {Function} request_createClaim_Authorized
  * @property {boolean} readyState
  */
 
@@ -236,8 +264,8 @@ const ApiContext = createContext({
   request_getInventory_Authorized,
   request_getDelayList_Authorized,
   request_getJobs_Authorized,
-  request_createJob_Authorized,
-
+  request_getClaims_Authorized,
+  request_createClaim_Authorized,
   readyState,
 })
 
@@ -258,12 +286,23 @@ export default function ApiProvider({ children, telegramApp }) {
   }, [TelegramAuthToken])
 
   const request_createUser_Authorized = async () => {
-    return securedClientActions.createUser(TelegramAuthToken, telegramApp.initDataUnsafe.user)
+    return securedClientActions.createUser(TelegramAuthToken, {
+      first_name: telegramApp.initDataUnsafe.user.first_name,
+      last_name: telegramApp.initDataUnsafe.user.first_name,
+      user_name: telegramApp.initDataUnsafe.user.username,
+    })
   }
   const request_getHero_Authorized = async () => {
     const response = await securedClientActions.hero(TelegramAuthToken)
+
+    console.log('response', response)
     if (response.CODE === 404) {
-      await securedClientActions.createUser(TelegramAuthToken, telegramApp.initDataUnsafe.user)
+      console.log('response', telegramApp.initDataUnsafe.user)
+      await securedClientActions.createUser(TelegramAuthToken, {
+        first_name: telegramApp.initDataUnsafe.user.first_name,
+        last_name: telegramApp.initDataUnsafe.user.first_name,
+        user_name: telegramApp.initDataUnsafe.user.username,
+      })
       return securedClientActions.hero(TelegramAuthToken)
     }
     return response
@@ -286,8 +325,11 @@ export default function ApiProvider({ children, telegramApp }) {
   const request_getJobs_Authorized = async () => {
     return securedClientActions.jobs(TelegramAuthToken)
   }
-  const request_createJob_Authorized = async sharkName => {
-    return securedClientActions.createJob(TelegramAuthToken, { shark: sharkName })
+  const request_createClaim_Authorized = async sharkName => {
+    return securedClientActions.createClaim(TelegramAuthToken, { shark: sharkName })
+  }
+  const request_getClaims_Authorized = async () => {
+    return securedClientActions.getClaims(TelegramAuthToken)
   }
 
   return (
@@ -301,7 +343,8 @@ export default function ApiProvider({ children, telegramApp }) {
         request_getInventory_Authorized,
         request_getDelayList_Authorized,
         request_getJobs_Authorized,
-        request_createJob_Authorized,
+        request_getClaims_Authorized,
+        request_createClaim_Authorized,
         readyState,
       }}
     >
