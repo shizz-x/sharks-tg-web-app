@@ -10,13 +10,6 @@ export default function Sharks() {
 
   const [currentJob, setJob] = useState(undefined)
 
-  const startShark0Job = async () => {
-    const delay = delayList[0].delay
-    const shark = delayList[0].shark
-    const _job = await gameHandlers.startSharkJob(delay, shark)
-    setJob(_job)
-  }
-
   useEffect(() => {
     if (delayList.length > 0) {
       setJob(jobs[0])
@@ -25,10 +18,10 @@ export default function Sharks() {
 
   return (
     <section>
-      <Link href={`/sharks/1`}>Drop Hunter</Link>
-      <Link href={`/sharks/2`}>Influencer</Link>
-      <Link href={`/sharks/3`}>Trader</Link>
-      <Link href={`/sharks/4`}>Whale</Link>
+      <Link href={`/sharks/DropHunter`}>Drop Hunter</Link>
+      <Link href={`/sharks/Influencer`}>Influencer</Link>
+      <Link href={`/sharks/Trader`}>Trader</Link>
+      <Link href={`/sharks/Whale`}>Whale</Link>
     </section>
   )
 }

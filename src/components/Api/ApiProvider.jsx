@@ -253,171 +253,40 @@ export default function ApiProvider({ children, telegramApp }) {
 
   useEffect(() => {
     if (TelegramAuthToken) {
-      setReadyState(false)
+      setReadyState(true)
     }
   }, [TelegramAuthToken])
 
   const request_createUser_Authorized = async () => {
-    /* 
-      
-    */
     return securedClientActions.createUser(TelegramAuthToken, telegramApp.initDataUnsafe.user)
   }
   const request_getHero_Authorized = async () => {
-    /* 
-      Профиль игрока
-
-      если пользователь не существует, то создает его
-
-      returns: 
-        Code	Description
-        200	  {
-                "TelegramId": 0,
-                "first_name": "string",
-                "last_name": "string",
-                "user_name": "string",
-                "Level": 0,
-                "CreatedAt": "string",
-                "UpdatedAt": "string"
-              }
-
-        404	  Object not found
-    */
     const response = await securedClientActions.hero(TelegramAuthToken)
-    if (!response) {
+    if (response.CODE === 404) {
       await securedClientActions.createUser(TelegramAuthToken, telegramApp.initDataUnsafe.user)
       return securedClientActions.hero(TelegramAuthToken)
     }
     return response
   }
   const request_getSharks_Authorized = async () => {
-    /* 
-      Возвращает список всех соревнований 
-
-      returns: 
-        Code	Description
-        200	  [
-                {
-                  "name": "First shark",
-                  "type": "first",
-                  "price": 0,
-                  "friends": 0,
-                  "collDawn": 3,
-                  "cost": 500
-                },
-              ]
-
-        404	  Object not found
-    */
     return securedClientActions.sharks(TelegramAuthToken)
   }
   const request_getBalance_Authorized = async () => {
-    /* 
-      Возвращает баланс пользователя 
-
-      returns: 
-        Code	Description
-        200	  {
-                "TelegramId": 0,
-                "Balance": 0,
-                "CreatedAt": "string",
-                "UpdatedAt": "string"
-              }
-
-        404	  Object not found
-    */
     return securedClientActions.balance(TelegramAuthToken)
   }
   const request_getLevels_Authorized = async () => {
-    /* 
-      Таблица уровней
-
-      returns: 
-        Code	Description
-        200	  [
-                {
-                  "level": 0,
-                  "balance": 0
-                }
-              ]
-
-        404	  Object not found
-    */
     return securedClientActions.levels(TelegramAuthToken)
   }
   const request_getInventory_Authorized = async () => {
-    /* 
-      Возвращает инвентарь 
-
-      returns: 
-        Code	Description
-        200	  [
-                {
-                  "name": "string",
-                  "price": 0,
-                  "count": 0
-                }
-              ]
-
-        404	  Object not found
-    */
     return securedClientActions.inventory(TelegramAuthToken)
   }
   const request_getDelayList_Authorized = async () => {
-    /* 
-      Возвращает список задержек 
-
-      returns: 
-        Code	Description
-        200	  null
-
-        404	  Object not found
-    */
     return securedClientActions.delayList(TelegramAuthToken)
   }
   const request_getJobs_Authorized = async () => {
-    /* 
-      Список текущих работ
-
-      returns: 
-        Code	Description
-        200	  [
-                {
-                  "TelegramId": 0,
-                  "Shark": "string",
-                  "Delay": 0,
-                  "CreatedAt": "string",
-                  "UpdatedAt": "string"
-                }
-              ]
-
-        404	  Object not found
-    */
     return securedClientActions.jobs(TelegramAuthToken)
   }
   const request_createJob_Authorized = async sharkName => {
-    /* 
-      Создание новой работы
-
-      parameters: 
-        название акулы для работы
-        sharkName: string
-
-
-      returns: 
-        Code	Description
-        200	  {
-                "TelegramId": 0,
-                "Shark": "string",
-                "Delay": 0,
-                "CreatedAt": "string",
-                "UpdatedAt": "string"
-              }
-
-        404	  Object not found
-
-        411   Job already exists
-    */
     return securedClientActions.createJob(TelegramAuthToken, { shark: sharkName })
   }
 

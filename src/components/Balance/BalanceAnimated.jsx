@@ -5,15 +5,16 @@ import PropTypes from 'prop-types'
 import SlotCounter from 'react-slot-counter'
 const delay = 750
 
-export default function BalanceAnimated({ amount }) {
-  const [currentBalance, setCurrentBalance] = useState(amount)
+export default function BalanceAnimated({ balance }) {
+  const [currentBalance, setCurrentBalance] = useState(balance?.Balance ? balance.Balance : 0)
   const hiddenBalanceRef = useRef(null)
 
   useEffect(() => {
     if (hiddenBalanceRef.current === null) return
-    const differenceAmount = amount - currentBalance
+    if (balance?.CODE !== 200) return
+    const differenceAmount = balance.Balance - currentBalance
     if (differenceAmount === 0) return
-    console.log(amount, currentBalance, differenceAmount)
+    console.log(balance.Balance, currentBalance, differenceAmount)
     console.log('before', hiddenBalanceRef.current)
 
     hiddenBalanceRef.current.innerHTML =
@@ -26,9 +27,9 @@ export default function BalanceAnimated({ amount }) {
     setTimeout(() => {
       hiddenBalanceRef.current.style = 'opacity: 0; transform: translateY(0) '
 
-      setCurrentBalance(amount)
+      setCurrentBalance(balance.Balance)
     }, delay)
-  }, [amount, hiddenBalanceRef])
+  }, [balance, hiddenBalanceRef])
 
   return (
     <div className={style.balance}>
@@ -52,5 +53,5 @@ export default function BalanceAnimated({ amount }) {
 }
 
 BalanceAnimated.propTypes = {
-  amount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  balance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }

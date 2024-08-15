@@ -1,5 +1,4 @@
 'use client'
-import dateFns from 'date-fns'
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useApi } from '@/components/Api/ApiProvider'
 import localstorage from '@/app/utils/localstorage'
@@ -24,7 +23,12 @@ export default function GameProvider({ children }) {
   const [jobs, setJobs] = useState([])
 
   const updateHandlers = {
-    updateBalance: async () => {
+    updateBalance: async (newBalance = null, timeout = 3000) => {
+      if (newBalance !== null) {
+        localstorage.setItem('balance', { ...balance, Balance: newBalance })
+        setBalance(prev => ({ ...prev, Balance: newBalance }))
+        return 0
+      }
       const response = await api.request_getBalance_Authorized()
       console.log('updateBalance', response)
 
@@ -32,9 +36,13 @@ export default function GameProvider({ children }) {
 
       if (response.CODE === 200) {
         localstorage.setItem('balance', response)
+      } else {
+        setTimeout(() => {
+          updateHandlers.updateBalance(null, timeout >= 10000 ? timeout : timeout + 2000)
+        }, timeout)
       }
     },
-    updateLevels: async () => {
+    updateLevels: async (value = null) => {
       const response = await api.request_getLevels_Authorized()
       console.log('updateLevels', response)
 
@@ -45,7 +53,7 @@ export default function GameProvider({ children }) {
         localstorage.setItem('levels', response)
       }
     },
-    updateInventory: async () => {
+    updateInventory: async (value = null) => {
       const response = await api.request_getInventory_Authorized()
       console.log('updateInventory', response)
       setInventory(response)
@@ -54,7 +62,7 @@ export default function GameProvider({ children }) {
         localstorage.setItem('inventory', response)
       }
     },
-    updateProfile: async () => {
+    updateProfile: async (value = null) => {
       const response = await api.request_getHero_Authorized()
       console.log('updateProfile', response)
       setProfile(response)
@@ -63,7 +71,7 @@ export default function GameProvider({ children }) {
         localstorage.setItem('profile', response)
       }
     },
-    updateSharks: async () => {
+    updateSharks: async (value = null) => {
       const response = await api.request_getSharks_Authorized()
       console.log('updateSharks', response)
       setSharks(response)
@@ -72,7 +80,13 @@ export default function GameProvider({ children }) {
         localstorage.setItem('sharks', response)
       }
     },
-    updateDelayList: async () => {
+    updateDelayList: async (value = null) => {
+      if (value !== null) {
+        const extededList = [...jobs, ...value]
+        setDelayList(extededList)
+        localstorage.setItem('delayList', extededList)
+        return
+      }
       const response = await api.request_getDelayList_Authorized()
       console.log('updateDelayList', response)
       setDelayList(response)
@@ -81,7 +95,14 @@ export default function GameProvider({ children }) {
         localstorage.setItem('delayList', response)
       }
     },
-    updateJobs: async () => {
+    updateJobs: async (value = null) => {
+      if (value !== null) {
+        const extededList = [...jobs, ...value]
+        setJobs(extededList)
+        localstorage.setItem('jobs', extededList)
+        return
+      }
+
       const response = await api.request_getJobs_Authorized()
       console.log('updateJobs', response)
       setJobs(response)
@@ -92,18 +113,12 @@ export default function GameProvider({ children }) {
     },
     sync: async () => {
       await updateHandlers.updateProfile()
-      updateHandlers.updateSharks()
-      updateHandlers.updateBalance()
-      updateHandlers.updateLevels()
-      updateHandlers.updateInventory()
-      updateHandlers.updateDelayList()
-      updateHandlers.updateJobs()
     },
   }
 
   useEffect(() => {
     if (api.readyState) {
-      updateHandlers.sync()
+      updateHandlers.updateProfile()
     }
   }, [api.readyState])
 
