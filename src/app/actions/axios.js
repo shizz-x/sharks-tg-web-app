@@ -10,7 +10,7 @@ class Axios {
     createUser: '/createUser',
     hero: '/api/hero',
     sharks: '/api/sharks',
-    balance: '/api/balancee',
+    balance: '/api/balance',
     levels: '/api/levels',
     inventory: '/api/inventory',
     delayList: '/api/delayList',
