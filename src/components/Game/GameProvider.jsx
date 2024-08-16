@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useApi } from '@/components/Api/ApiProvider'
 import localstorage from '@/app/utils/localstorage'
+
 const GameContext = createContext({
   balance: Number(localstorage.getItem('balance')) || { Balance: 0 },
   levels: localstorage.getItem('levels') || [],
@@ -10,6 +11,22 @@ const GameContext = createContext({
   sharks: localstorage.getItem('sharks') || [],
   delayList: localstorage.getItem('delayList') || [],
   jobs: localstorage.getItem('jobs') || [],
+  claims: localstorage.getItem('claims') || [],
+  updateHandlers: {
+    updateBalance: null,
+    updateLevels: null,
+    updateInventory: null,
+    updateProfile: null,
+    updateSharks: null,
+    updateDelayList: null,
+    updateJobs: null,
+    updateClaims: null,
+    sync: null,
+  },
+  gameHandlers: {
+    createClaim: null,
+    addBalance: null,
+  },
 })
 
 export default function GameProvider({ children }) {
@@ -23,6 +40,16 @@ export default function GameProvider({ children }) {
   const [jobs, setJobs] = useState([])
   const [claims, setClaims] = useState([])
 
+  /**
+   * Update Handlers
+   *
+   * @name updateHandlers
+   * @param {*} value
+   * @returns
+   * @memberof GameProvider
+   * @description Update Handlers
+   *
+   */
   const updateHandlers = {
     updateBalance: async (newBalance = null, timeout = 3000) => {
       if (newBalance !== null) {
@@ -31,7 +58,7 @@ export default function GameProvider({ children }) {
         return 0
       }
       const response = await api.request_getBalance_Authorized()
-      console.log('updateBalance', response)
+      console.log('[GameProvider] . updateBalanceEvent >', response)
 
       setBalance(response)
 
@@ -45,7 +72,7 @@ export default function GameProvider({ children }) {
     },
     updateLevels: async (value = null) => {
       const response = await api.request_getLevels_Authorized()
-      console.log('updateLevels', response)
+      console.log('[GameProvider] . updateLevelsEvent >', response)
 
       setLevels(response)
 
@@ -56,7 +83,7 @@ export default function GameProvider({ children }) {
     },
     updateInventory: async (value = null) => {
       const response = await api.request_getInventory_Authorized()
-      console.log('updateInventory', response)
+      console.log('[GameProvider] . updateInventoryEvent >', response)
       setInventory(response)
 
       if (response.CODE === 200) {
@@ -65,7 +92,7 @@ export default function GameProvider({ children }) {
     },
     updateProfile: async (value = null) => {
       const response = await api.request_getHero_Authorized()
-      console.log('updateProfile', response)
+      console.log('[GameProvider] . updateProfileEvent >', response)
       setProfile(response)
 
       if (response.CODE === 200) {
@@ -74,7 +101,7 @@ export default function GameProvider({ children }) {
     },
     updateSharks: async (value = null) => {
       const response = await api.request_getSharks_Authorized()
-      console.log('updateSharks', response)
+      console.log('[GameProvider] . updateSharksEvent >', response)
       setSharks(response)
 
       if (response.CODE === 200) {
@@ -89,7 +116,7 @@ export default function GameProvider({ children }) {
         return
       }
       const response = await api.request_getDelayList_Authorized()
-      console.log('updateDelayList', response)
+      console.log('[GameProvider] . updateDelayListEvent >', response)
       setDelayList(response)
 
       if (response.CODE === 200) {
@@ -105,7 +132,7 @@ export default function GameProvider({ children }) {
       }
 
       const response = await api.request_getJobs_Authorized()
-      console.log('updateJobs', response)
+      console.log('[GameProvider] . updateJobsEvent >', response)
       setJobs(response)
 
       if (response.CODE === 200) {
@@ -114,7 +141,7 @@ export default function GameProvider({ children }) {
     },
     updateClaims: async () => {
       const response = await api.request_getClaims_Authorized()
-      console.log('updateClaims', response)
+      console.log('[GameProvider] . updateClaimsEvent >', response)
       setClaims(response)
 
       if (response.CODE === 200) {
@@ -134,16 +161,9 @@ export default function GameProvider({ children }) {
 
   const gameHandlers = {
     createClaim: async sharkName => {
+      console.log('[GameProvider] . createClaim', sharkName)
       const _job = await api.request_createClaim_Authorized(sharkName)
-      if (_job.CODE === 200) {
-        setTimeout(() => {
-          updateHandlers.updateBalance()
-        }, delayInMinutes * 60 * 1000 + 300)
-      }
-      if (_job) {
-        setJobs([...jobs, _job])
-        localstorage.setItem('jobs', jobs)
-      }
+      return _job
     },
     addBalance: amount => {
       const newBalance = balance.Balance + amount
@@ -165,6 +185,7 @@ export default function GameProvider({ children }) {
         sharks,
         delayList,
         jobs,
+        claims,
         updateHandlers,
         gameHandlers,
       }}
@@ -173,6 +194,15 @@ export default function GameProvider({ children }) {
     </GameContext.Provider>
   )
 }
+
+/**
+ * useGame
+ *
+ * @returns
+ * @memberof GameProvider
+ * @description useGame
+ *
+ */
 export const useGame = () => {
   const data = useContext(GameContext)
   return data

@@ -30,10 +30,10 @@ export function TelegramWebApp({ children }) {
 
   useEffect(() => {
     if (window.Telegram) {
-      // setTelegramApp(window.Telegram.WebApp)
+      setTelegramApp(window.Telegram.WebApp)
       console.log('telegramApp', window.Telegram.WebApp)
       window.Telegram.WebApp.expand()
-      setTelegramApp(data)
+      // setTelegramApp(data)
     }
   }, [])
 

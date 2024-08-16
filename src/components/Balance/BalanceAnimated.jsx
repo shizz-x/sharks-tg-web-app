@@ -14,15 +14,10 @@ export default function BalanceAnimated({ balance }) {
     if (balance?.CODE !== 200) return
     const differenceAmount = balance.Balance - currentBalance
     if (differenceAmount === 0) return
-    console.log(balance.Balance, currentBalance, differenceAmount)
-    console.log('before', hiddenBalanceRef.current)
 
     hiddenBalanceRef.current.innerHTML =
       (differenceAmount > 0 ? '+' : '') + differenceAmount.toString()
-    console.log(hiddenBalanceRef.current.style)
     hiddenBalanceRef.current.style = 'opacity: 1; transform: translateY(-100%);'
-
-    console.log('after', hiddenBalanceRef.current)
 
     setTimeout(() => {
       hiddenBalanceRef.current.style = 'opacity: 0; transform: translateY(0) '

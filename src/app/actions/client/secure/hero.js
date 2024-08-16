@@ -6,7 +6,6 @@ export default async function createUser(xauth) {
   const response = await axios
     .get(axios.urlsMap.hero)
     .then(r => {
-      console.log('r', r)
       return Object.assign(r.data, { CODE: r.status })
     })
     .catch(e => {

@@ -295,9 +295,7 @@ export default function ApiProvider({ children, telegramApp }) {
   const request_getHero_Authorized = async () => {
     const response = await securedClientActions.hero(TelegramAuthToken)
 
-    console.log('response', response)
     if (response.CODE === 404) {
-      console.log('response', telegramApp.initDataUnsafe.user)
       await securedClientActions.createUser(TelegramAuthToken, {
         first_name: telegramApp.initDataUnsafe.user.first_name,
         last_name: telegramApp.initDataUnsafe.user.first_name,

@@ -19,7 +19,6 @@ export default function Userbar({}) {
   useEffect(() => {
     if (api.readyState) {
       if (game.profile.CODE === 200) {
-        console.log('game.profile', game.profile)
         game.updateHandlers.updateBalance()
         game.updateHandlers.updateLevels()
       }
@@ -29,8 +28,6 @@ export default function Userbar({}) {
   useEffect(() => {
     // fucking cases from api...
     if (game?.balance?.CODE === 200 && game?.levels?.CODE === 200) {
-      console.log('percentpercentpercentpercentpercentpercentpercentpercentpercentpercentpercent')
-
       const allLevels = game.levels.map(level => level)
       let currentLevel = allLevels.find(level => level.balance >= game.balance.Balance)
 
@@ -41,7 +38,7 @@ export default function Userbar({}) {
       setBarLevel(currentLevel.level)
       localstorage.setItem('barLevel', { num: currentLevel.level })
 
-      if (currentLevel.balance <= game.balance.Balance) {
+      if (currentLevel.balance < game.balance.Balance) {
         setBarLevel('max')
         setPercent(100)
         localstorage.setItem('barLevel', { num: 'max' })
@@ -65,14 +62,13 @@ export default function Userbar({}) {
     <menu
       className={style.userbar}
       onClick={() => {
-        console.log('game.balance', game.balance)
         game.updateHandlers.updateBalance(game.balance.Balance + 50)
       }}
     >
-      <Avatar image={av1.src} />
+      <Avatar image={av1.src} level={barLevel} title='Avatar' />
       <div className={style.inner}>
         <BalanceAnimated balance={game.balance} />
-        <Progress percent={percent} level={barLevel} />
+        <Progress percent={percent} />
       </div>
 
       <Avatar image={wallet.src} />

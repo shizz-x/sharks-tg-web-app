@@ -5,7 +5,6 @@ import style from './Panel.module.scss'
 import Background from './Background.jsx'
 import classNames from 'classnames'
 
-console.log
 export default function Panel({ children }) {
   const pathname = usePathname()
   const isHomePage =

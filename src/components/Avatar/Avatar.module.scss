@@ -1,20 +1,41 @@
 .avatar {
-    text-align: center;
-    height: 45px;
-    width: 45px;
-    aspect-ratio: 1/1;
-    border-radius: 13px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(30px);
-    background-color: rgba(255, 255, 255, 0.05);
-    box-shadow: inset 0 0px 10px rgba(255, 255, 255, 0.05);
+  text-align: center;
+  height: 45px;
+  width: 45px;
+  aspect-ratio: 1/1;
+  border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(30px);
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0px 10px rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .level {
+    transition: all 0.1s ease;
+
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    aspect-ratio: 1 / 1;
+    width: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: clip;
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #ffffff1c;
+    border-radius: 5px;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.261);
+  }
+  .level_text {
+    transition: all 0.3s ease-in-out;
+  }
 }

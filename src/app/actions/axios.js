@@ -15,6 +15,7 @@ class Axios {
     inventory: '/api/inventory',
     delayList: '/api/delayList',
     claim: '/api/claim',
+    job: '/api/job',
   }
 
   xauth = null

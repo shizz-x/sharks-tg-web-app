@@ -1,7 +1,9 @@
 'use client'
 import Axios from '@/app/actions/axios'
-export default async function getClaims(xauth, { shark }) {
+export default async function createClaim(xauth, { shark }) {
   const axios = new Axios(xauth)
+
+  console.log('[createClaim] shark', shark)
 
   const response = await axios
     .post(axios.urlsMap.claim, { shark })

@@ -5,7 +5,6 @@ import Soon from '@/components/Buttons/Soon.jsx'
 import TaskList from '@/components/Tasks/TaskList.jsx'
 import { TaskData } from '@/components/Tasks/TaskData.jsx'
 export default function Friends() {
-  console.log(TaskData)
   return (
     <section>
       <StickyBar>
