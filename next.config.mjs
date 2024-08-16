@@ -12,7 +12,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://3.29.180.112/api/:path*',
+        destination: 'https://tapsharks.dev/api/:path*',
       },
     ]
   },

@@ -31,7 +31,6 @@ export function TelegramWebApp({ children }) {
   useEffect(() => {
     if (window.Telegram) {
       setTelegramApp(window.Telegram.WebApp)
-      console.log('telegramApp', window.Telegram.WebApp)
       window.Telegram.WebApp.expand()
       // setTelegramApp(data)
     }
@@ -40,6 +39,7 @@ export function TelegramWebApp({ children }) {
   const closeTelegramWebAppHandler = () => {
     return telegramApp.close()
   }
+  console.log('telegramApp', telegramApp)
 
   return !telegramApp ? (
     <></>

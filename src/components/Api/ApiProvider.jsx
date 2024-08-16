@@ -280,6 +280,8 @@ export default function ApiProvider({ children, telegramApp }) {
   const [readyState, setReadyState] = useState(false)
 
   useEffect(() => {
+    console.log('TelegramAuthToken', TelegramAuthToken)
+
     if (TelegramAuthToken) {
       setReadyState(true)
     }
