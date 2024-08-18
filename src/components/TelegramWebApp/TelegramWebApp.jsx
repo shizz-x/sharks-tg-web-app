@@ -37,6 +37,7 @@ export function TelegramWebApp({ children }) {
       window.Telegram.WebApp.sendData('telegram-web-app-data')
       window.Telegram.WebApp.setBackgroundColor('#12dd01')
       window.Telegram.WebApp.setHeaderColor('#12dd01')
+      window.Telegram.WebApp.expand()
       alert(JSON.stringify(window.Telegram.WebApp.themeParams))
       alert(
         `window.Telegram.WebApp.viewportHeight : ${window.Telegram.WebApp.viewportHeight} \n window.Telegram.WebApp.viewportStableHeight : ${window.Telegram.WebApp.viewportStableHeight}`,
