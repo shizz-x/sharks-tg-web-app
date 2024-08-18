@@ -32,6 +32,18 @@ export function TelegramWebApp({ children }) {
     if (window.Telegram) {
       setTelegramApp(window.Telegram.WebApp)
       // setTelegramApp(data)
+      window.Telegram.WebApp.disableVerticalSwipes()
+      window.Telegram.WebApp.disableClosingConfirmation()
+      window.Telegram.WebApp.sendData('telegram-web-app-data')
+      window.Telegram.WebApp.setBackgroundColor('#12dd01')
+      window.Telegram.WebApp.setHeaderColor('#12dd01')
+      window.Telegram.WebApp.showAlert('test')
+      window.Telegram.WebApp.showConfirm('test')
+      window.Telegram.WebApp.showPopup('test')
+      alert(JSON.stringify(window.Telegram.WebApp.themeParams))
+      alert(
+        `window.Telegram.WebApp.viewportHeight : ${window.Telegram.WebApp.viewportHeight} \n window.Telegram.WebApp.viewportStableHeight : ${window.Telegram.WebApp.viewportStableHeight}`,
+      )
     }
   }, [])
 
